@@ -14,7 +14,7 @@ export class UserService {
   private baseUrl: String = 'http://localhost:8080/api';
   private headers = new Headers({'Content-Type': 'application/json'});
   private options = new RequestOptions({headers: this.headers});
-  private user: User;
+  private user =  new User();
 
   constructor(private http: Http) { }
 
@@ -38,13 +38,13 @@ export class UserService {
 
   createUser(user: User) {
 
-            return this.http.post(this.baseUrl + '/user', JSON.stringify(user), this.options).map((response: Response) => response.json())
+            return this.http.post(this.baseUrl + '/user/', JSON.stringify(user), this.options).map((response: Response) => response.json())
                     .catch(this.errorHandler);
   }
 
   updateUser(user: User) {
 
-            return this.http.put(this.baseUrl + '/user', JSON.stringify(user), this.options).map((response: Response) => response.json())
+            return this.http.put(this.baseUrl + '/user/', JSON.stringify(user), this.options).map((response: Response) => response.json())
                         .catch(this.errorHandler);
       }
 
@@ -56,7 +56,7 @@ export class UserService {
     this.user = user;
   }
 
-  getter(user: User) {
-    this.user = user;
+  getter() {
+    return this.user;
   }
 }

@@ -40,12 +40,12 @@ public class controller {
 		 return true;
 	}
 	
-	@PostMapping("/users")
+	@PostMapping("/user")
 	public User createUser(@RequestBody User user){
 		return userRepository.save(user);
 	}
 	
-	@PutMapping("/users")
+	@PutMapping("/user")
 	public User updateUser(@RequestBody User user){
 		return userRepository.save(user);
 	}
