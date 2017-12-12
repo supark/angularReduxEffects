@@ -1,3 +1,5 @@
+
+
   <div class="container">
 
   <table class="table table-striped">
@@ -7,15 +9,33 @@
       <th>Last Name</th>
       <th>Operations</th>
     </thead>
-    <tbody>
+  <!--<tbody>
+
   <tr *ngFor="let user of users" >
-    <td> {{user.id}} </td>
-    <td>{{user.fname}} </td>
-    <td>{{user.lname}} </td>
-    <td><button class="btn btn-danger" (click)="deleteUser(user)">Delete</button></td>
+     {{user.id}}
+    {{user.fname}}
+    {{user.lname}}
+  </tr>
+</tbody>-->
+</table>
+  </div>
+    <!--<td><button class="btn btn-danger" (click)="deleteUser(user)">Delete</button></td>
     <td><button class="btn btn-primary" (click)="updateUser(user)">Edit</button></td>
   </tr>
-  </tbody>
-  </table>
-  <button class="btn btn-danger" (click)="newUser()">New User</button>
-  </div>
+  <div *ngFor="let user of (users$ | async)">
+    {{user.id}}
+   {{user.fname}}
+    {{user.lname}}
+  </div>-->
+  {{users$ | async}}
+
+    <!--<button class="btn btn-danger" (click)="deleteUser(user)">Delete</button>
+    <button class="btn btn-primary" (click)="updateUser(user)">Edit</button>
+
+  <button class="btn btn-danger" (click)="newUser()">New User</button>-->
+
+
+
+
+
+

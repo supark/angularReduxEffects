@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {User} from '../../user';
+import {User} from '../../models/user';
 import {Router} from '@angular/router';
 import {UserService} from '../../shared-service/user.service';
 
@@ -14,7 +14,7 @@ export class UserFormComponent implements OnInit {
   constructor(private _userService: UserService, private _router: Router) { }
 
   ngOnInit() {
-    this.user = this._userService.getter();
+    // this.user = this._userService.getter();
   }
 
   processForm() {

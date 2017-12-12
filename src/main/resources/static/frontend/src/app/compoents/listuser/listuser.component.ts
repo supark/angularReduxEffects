@@ -1,7 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import {UserService} from '../../shared-service/user.service';
-import {User} from '../../user';
+import {User} from '../../models/user';
 import {Router} from '@angular/router';
+
+import {Store} from '@ngrx/store';
+import {Observable} from 'rxjs/Observable';
+import * as ListUserActions from './actions/listuser.action';
+import {AppState} from './reducer/listuser.reducer';
+
 
 @Component({
   selector: 'app-listuser',
@@ -9,14 +15,24 @@ import {Router} from '@angular/router';
   styleUrls: ['./listuser.component.css']
 })
 export class ListuserComponent implements OnInit {
-   private users: User[];
 
-  constructor(private _userService: UserService, private _router: Router) { }
+   users$: Observable<User[]>;
 
-  ngOnInit() {
-    this._userService.getUsers().subscribe((users) => {
-      console.log(users);
-      this.users = users;
+    // private users: User[];
+
+  /* constructor(private _userService: UserService, private _router: Router) { }*/
+
+   constructor(private _userService: UserService, private _router: Router, private store: Store<AppState>) {
+     this.users$ = this.store.select('users');
+
+   }
+
+
+  /*ngOnInit() {
+    this._userService.getUsers().subscribe((users$) => {
+      // console.log(users);
+       this.users = users$;
+      //this.store.dispatch(new ListUserActions.GetUsers());
     },
       (error) => {
       console.log(error);
@@ -24,9 +40,14 @@ export class ListuserComponent implements OnInit {
   () => {
     console.log('success');
   });
+  }*/
+
+  ngOnInit() {
+    this.store.dispatch(new ListUserActions.GetUsers());
   }
 
-  deleteUser(user) {
+
+  /*deleteUser(user) {
     this._userService.deleteUser(user.id).subscribe((users) => {
       this.users.splice(this.users.indexOf(user), 1);
     },
@@ -48,5 +69,9 @@ newUser() {
   this._userService.setter(user);
   this._router.navigate(['/op']);
 }
+
+*/
+
+
 
 }

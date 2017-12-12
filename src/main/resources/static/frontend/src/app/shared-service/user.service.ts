@@ -5,22 +5,22 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 
-//import 'rxjs/add/observable/do';
-//import 'rxjs/add/observable/delay';
-import {User} from '../user';
+import {User} from '../userclass';
+// import {User} from '../models/user';
 
 @Injectable()
 export class UserService {
   private baseUrl: String = 'http://localhost:8080/api';
   private headers = new Headers({'Content-Type': 'application/json'});
   private options = new RequestOptions({headers: this.headers});
-  private user =  new User();
+   private user =  new User();
 
   constructor(private http: Http) { }
 
-  getUsers() {
+  getUsers(): Observable<User[]> {
 
-    return this.http.get(this.baseUrl + '/users', this.options).map((response: Response) => response.json())
+    return this.http.get(this.baseUrl + '/users', this.options)
+    .map((response: Response) => response.json())
     .catch(this.errorHandler);
   }
 
