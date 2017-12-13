@@ -1,22 +1,22 @@
 
 
   <div class="container">
-
-  <table class="table table-striped">
+  <h1> This is an object {{loading$}} , this resolves the actual value {{loading$ | async}} </h1>
+  <table class="table table-striped" *ngIf="!(loading$ | async)">
     <thead>
       <th>Id</th>
       <th>First Name</th>
       <th>Last Name</th>
       <th>Operations</th>
     </thead>
-  <!--<tbody>
+  <tbody>
 
-  <tr *ngFor="let user of users" >
+  <tr *ngFor="let user of (users$ | async)" >
      {{user.id}}
     {{user.fname}}
     {{user.lname}}
   </tr>
-</tbody>-->
+</tbody>
 </table>
   </div>
     <!--<td><button class="btn btn-danger" (click)="deleteUser(user)">Delete</button></td>
@@ -27,7 +27,9 @@
    {{user.fname}}
     {{user.lname}}
   </div>-->
-  {{users$ | async}}
+  kdjlfkdjlfkj
+
+  <!--{{users$ | async | json}}-->
 
     <!--<button class="btn btn-danger" (click)="deleteUser(user)">Delete</button>
     <button class="btn btn-primary" (click)="updateUser(user)">Edit</button>

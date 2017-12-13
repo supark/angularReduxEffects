@@ -6,31 +6,27 @@ import 'rxjs/add/observable/of';
 
 export type Action = ListUserActions.Actions;
 
+export const initialState: AppState = {
+  entities: [],
+  loading: false,
+  loaded: true
 
-/*export interface State {
-  isLoading: boolean;
-  isLoadSuccess: boolean;
-  users: Array<User>;
-}
-
-export const initialState: State = {
-  isLoading: false,
-  isLoadSuccess: false,
-  users: []
-};*/
+};
 
 export interface AppState {
-  users: User[];
+  entities: User[];
+  loading: boolean;
+  loaded: boolean;
 }
 
-export function listuserReducer(state: User[] = [], action: Action) {
+export function listuserReducer(state: AppState  = initialState, action: Action) {
   switch (action.type) {
     case ListUserActions.GET_USERS:
-      return [...state];
+      return {...state, loading: true , loaded: false};
     case ListUserActions.GET_USERS_SUCCESS:
-      return [...state, ...action.payload];
+      return {...state, entities: action.payload, loading: false,  loaded: true};
     case ListUserActions.GET_USERS_FAIL:
-    return [...state, ...action.payload];
+    return {...state, entities: [], loading: false, loaded: true};
     /*case ListUserActions.DELETE_USER:
       return {...state, loading: true};
     case ListUserActions.DELETE_USER_SUCCESS:
@@ -54,3 +50,7 @@ export function listuserReducer(state: User[] = [], action: Action) {
       return state; }
   }
 }
+
+export const getUsers = (state: AppState) => state.entities;
+export const getLoading = (state: AppState ) => state.loading;
+export const getLoaded = (state: AppState ) => state.loaded;

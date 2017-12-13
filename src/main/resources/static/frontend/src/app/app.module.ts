@@ -14,7 +14,9 @@ import {StoreModule} from '@ngrx/store';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 
  import {ListuserEffects} from './compoents/listuser/effects/listuser.effects';
- import {listuserReducer} from './compoents/listuser/reducer/listuser.reducer';
+ // import {listuserReducer} from './compoents/listuser/reducer/listuser.reducer';
+
+ import {reducers} from './reducer';
 
 const appRoutes: Routes = [
   {path: '', component: ListuserComponent},
@@ -33,7 +35,7 @@ const appRoutes: Routes = [
     HttpModule,
     FormsModule,
      EffectsModule.forRoot([ListuserEffects]),
-     StoreModule.forRoot({user: listuserReducer}),
+     StoreModule.forRoot(reducers),
     StoreDevtoolsModule.instrument({maxAge: 25})
   ],
   providers: [UserService],

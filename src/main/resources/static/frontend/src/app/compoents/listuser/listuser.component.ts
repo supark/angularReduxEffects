@@ -6,6 +6,7 @@ import {Router} from '@angular/router';
 import {Store} from '@ngrx/store';
 import {Observable} from 'rxjs/Observable';
 import * as ListUserActions from './actions/listuser.action';
+import * as fromRoot from '../../reducer';
 import {AppState} from './reducer/listuser.reducer';
 
 
@@ -17,14 +18,16 @@ import {AppState} from './reducer/listuser.reducer';
 export class ListuserComponent implements OnInit {
 
    users$: Observable<User[]>;
+   loading$: Observable<boolean>;
 
     // private users: User[];
 
   /* constructor(private _userService: UserService, private _router: Router) { }*/
 
    constructor(private _userService: UserService, private _router: Router, private store: Store<AppState>) {
-     this.users$ = this.store.select('users');
-
+     // this.users$ = this.store.select(fromUser.getUsers);
+     this.loading$  = this.store.select(fromRoot.getUsersLoading);
+     this.users$ = this.store.select(fromRoot.getUserEntities)
    }
 
 
